@@ -1,0 +1,24 @@
+{
+  "include": [
+    "./src/**/*.ts",
+    "@types"
+  ],
+  "exclude": [
+    "node_modules"
+  ],
+  "compilerOptions": {
+    "target": "es2015",
+    "module": "commonjs",
+    "allowJs": true,
+    "outDir": "./dist",
+    "esModuleInterop": true,
+    "typeRoots": [
+      "node_modules/@types",
+      "@types"
+    ],
+    "lib": [
+      "dom",
+      "es2015"
+    ]
+  }
+}

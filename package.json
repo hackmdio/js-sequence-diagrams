@@ -1,23 +1,54 @@
 {
   "name": "js-sequence-diagrams",
+  "version": "0.0.1",
+  "description": "Draws simple SVG sequence diagrams from textual representation of the diagram",
   "repository": {
     "type": "git",
-    "url": "https://github.com/bramp/js-sequence-diagrams.git"
+    "url": "https://github.com/hackmdio/js-sequence-diagrams"
   },
+  "main": "dist/index.js",
+  "author": {
+    "name": "Andrew Brampton",
+    "url": "https://github.com/bramp"
+  },
+  "contributors": [
+    {
+      "name": "Raccoon Lee",
+      "url": "https://github.com/a60814billy",
+      "email": "raccoon@hackmd.io"
+    }
+  ],
   "license": "BSD-2-Clause",
   "devDependencies": {
-    "bower": "1.8.x",
-    "eslint": "3.16.x",
-    "eslint-config-google": "0.7.x",
-    "jison": "0.4.15",
-    "jshint": "2.9.x",
-    "jsonlint": "1.6.x",
-    "minifier": "0.8.x",
-    "preprocessor": "1.4.x",
-    "qunit": "0.9.x",
-    "uglify-js": "2.8.x"
+    "@babel/cli": "^7.4.3",
+    "@babel/core": "^7.4.3",
+    "@babel/plugin-proposal-class-properties": "^7.4.0",
+    "@babel/polyfill": "^7.4.3",
+    "@babel/preset-env": "^7.4.3",
+    "@babel/preset-typescript": "^7.3.3",
+    "@types/jquery": "^3.3.29",
+    "@types/raphael": "^2.1.30",
+    "babel-loader": "^8.0.5",
+    "core-js": "2.6.5",
+    "jison": "^0.4.18",
+    "jquery": "^3.3.1",
+    "raphael": "^2.2.8",
+    "terser-webpack-plugin": "^1.2.3",
+    "ts-loader": "^5.3.3",
+    "tslint": "^5.15.0",
+    "tslint-config-airbnb": "^5.11.1",
+    "typescript": "^3.4.2",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0"
+  },
+  "peerDependencies": {
+    "jquery": ">=2.0.0",
+    "raphael": ">=2.0.0"
   },
   "scripts": {
-    "test": "make test"
+    "lint": "tslint --project ./ src/**/*.ts",
+    "build-grammar": "jison src/parser/grammar.jison -o src/parser/grammar.js",
+    "build": "npm run-script build-grammar && webpack -c webpack.config.js --prorgess",
+    "prepack": "npm run-script build"
   }
 }
