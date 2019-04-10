@@ -19,13 +19,13 @@ export class NoteGraphic extends BaseSignalGraphic {
     const x1 = this.actorAGraphic.box.getCenterX();
 
     switch (this.note.placement) {
-      case Placement.LEFTOF:
+      case Placement.LeftOf:
         this.box.x = x1 - ACTOR_MARGIN - this.box.width;
         break;
-      case Placement.RIGHTOF:
+      case Placement.RightOf:
         this.box.x = x1 + ACTOR_MARGIN;
         break;
-      case Placement.OVER:
+      case Placement.Over:
         if (this.note.hasManyActors()) {
           const x2 = this.actorBGraphic.box.getCenterX();
           const overlap = NOTE_OVERLAP + NOTE_PADDING;

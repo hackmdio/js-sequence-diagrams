@@ -47,13 +47,13 @@ export class RaphaelDrawer extends BaseDrawer {
   private paper!: RaphaelPaper;
 
   private arrowTypes = {
-    [ArrowType.FILLED]: 'black',
-    [ArrowType.OPEN]: 'open',
+    [ArrowType.Filled]: 'black',
+    [ArrowType.Open]: 'open',
   };
 
   private lineTypes = {
-    [LineType.SOLID]: '',
-    [LineType.DOTTED]: '-',
+    [LineType.Solid]: '',
+    [LineType.Dotted]: '-',
   };
 
   constructor(diagram: Diagram, options: IRaphaelDrawerOptions) {

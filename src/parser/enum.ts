@@ -1,15 +1,15 @@
 export enum LineType {
-  SOLID = 0,
-  DOTTED = 1,
+  Solid = 0,
+  Dotted = 1,
 }
 
 export enum ArrowType {
-  FILLED = 0,
-  OPEN = 1,
+  Filled = 0,
+  Open = 1,
 }
 
 export enum Placement {
-  LEFTOF = 0,
-  RIGHTOF = 1,
-  OVER = 2,
+  LeftOf = 0,
+  RightOf = 1,
+  Over = 2,
 }

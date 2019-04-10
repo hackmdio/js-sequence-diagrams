@@ -102,7 +102,7 @@ case 10:
  this.$ = new yy.parser.Diagram.Note($$[$0-1], $$[$0-2], $$[$0]); 
 break;
 case 11:
- this.$ = new yy.parser.Diagram.Note($$[$0-1], yy.parser.Diagram.PLACEMENT.OVER, $$[$0]); 
+ this.$ = new yy.parser.Diagram.Note($$[$0-1], yy.parser.Diagram.Placement.Over, $$[$0]); 
 break;
 case 12: case 20:
  this.$ = $$[$0]; 
@@ -111,10 +111,10 @@ case 13:
  this.$ = [$$[$0-2], $$[$0]]; 
 break;
 case 14:
- this.$ = yy.parser.Diagram.PLACEMENT.LEFTOF; 
+ this.$ = yy.parser.Diagram.Placement.LeftOf; 
 break;
 case 15:
- this.$ = yy.parser.Diagram.PLACEMENT.RIGHTOF; 
+ this.$ = yy.parser.Diagram.Placement.RightOf; 
 break;
 case 16:
  this.$ = new yy.parser.Diagram.Signal($$[$0-3], $$[$0-2], $$[$0-1], $$[$0]); 
@@ -129,16 +129,16 @@ case 19:
  this.$ = $$[$0-1] | ($$[$0] << 2); 
 break;
 case 21:
- this.$ = yy.parser.Diagram.LINETYPE.SOLID; 
+ this.$ = yy.parser.Diagram.LineType.Solid; 
 break;
 case 22:
- this.$ = yy.parser.Diagram.LINETYPE.DOTTED; 
+ this.$ = yy.parser.Diagram.LineType.Dotted; 
 break;
 case 23:
- this.$ = yy.parser.Diagram.ARROWTYPE.FILLED; 
+ this.$ = yy.parser.Diagram.ArrowType.Filled; 
 break;
 case 24:
- this.$ = yy.parser.Diagram.ARROWTYPE.OPEN; 
+ this.$ = yy.parser.Diagram.ArrowType.Open; 
 break;
 case 25:
  this.$ = yy.parser.Diagram.unescape($$[$0].substring(1)); 

@@ -65,7 +65,7 @@ statement
 
 note_statement
 	: 'note' placement actor message   { $$ = new yy.parser.Diagram.Note($3, $2, $4); }
-	| 'note' 'over' actor_pair message { $$ = new yy.parser.Diagram.Note($3, yy.parser.Diagram.PLACEMENT.OVER, $4); }
+	| 'note' 'over' actor_pair message { $$ = new yy.parser.Diagram.Note($3, yy.parser.Diagram.Placement.Over, $4); }
 	;
 
 actor_pair
@@ -74,8 +74,8 @@ actor_pair
 	;
 
 placement
-	: 'left_of'   { $$ = yy.parser.Diagram.PLACEMENT.LEFTOF; }
-	| 'right_of'  { $$ = yy.parser.Diagram.PLACEMENT.RIGHTOF; }
+	: 'left_of'   { $$ = yy.parser.Diagram.Placement.LeftOf; }
+	| 'right_of'  { $$ = yy.parser.Diagram.Placement.RightOf; }
 	;
 
 signal
@@ -97,13 +97,13 @@ signaltype
 	;
 
 linetype
-	: LINE      { $$ = yy.parser.Diagram.LINETYPE.SOLID; }
-	| DOTLINE   { $$ = yy.parser.Diagram.LINETYPE.DOTTED; }
+	: LINE      { $$ = yy.parser.Diagram.LineType.Solid; }
+	| DOTLINE   { $$ = yy.parser.Diagram.LineType.Dotted; }
 	;
 
 arrowtype
-	: ARROW     { $$ = yy.parser.Diagram.ARROWTYPE.FILLED; }
-	| OPENARROW { $$ = yy.parser.Diagram.ARROWTYPE.OPEN; }
+	: ARROW     { $$ = yy.parser.Diagram.ArrowType.Filled; }
+	| OPENARROW { $$ = yy.parser.Diagram.ArrowType.Open; }
 	;
 
 message

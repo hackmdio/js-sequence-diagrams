@@ -198,15 +198,15 @@ export class DiagramGraphic {
       let b: number;
       let extraWidth = 2 * ACTOR_MARGIN;
       switch (ng.note.placement) {
-        case Placement.LEFTOF:
+        case Placement.LeftOf:
           b = ng.actorAGraphic.index;
           a = b - 1;
           break;
-        case Placement.RIGHTOF:
+        case Placement.RightOf:
           a = ng.actorAGraphic.index;
           b = a + 1;
           break;
-        case Placement.OVER:
+        case Placement.Over:
           if (ng.note.hasManyActors()) {
             a = ng.actorAGraphic.index;
             b = ng.actorBGraphic.index;

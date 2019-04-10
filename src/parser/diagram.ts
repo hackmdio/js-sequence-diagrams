@@ -15,9 +15,9 @@ export class Diagram {
   public static Signal = Signal;
   public static Note = Note;
 
-  public static LINETYPE = LineType;
-  public static ARROWTYPE = ArrowType;
-  public static PLACEMENT = Placement;
+  public static LineType = LineType;
+  public static ArrowType = ArrowType;
+  public static Placement = Placement;
 
   /**
    * Turn "\\n" into "\n"
