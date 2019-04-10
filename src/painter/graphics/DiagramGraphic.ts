@@ -49,7 +49,8 @@ export class DiagramGraphic {
     // 5. layout all elements in y-coordinate
     this.layoutHeightOfActors();
     this.layoutHeightOfAllSignals();
-    this.drawer.resize(this.width, this.layoutOffsetY + 500);
+    this.height += this.signalTotalHeight + 2 * this.minActorHeight + DIAGRAM_MARGIN;
+    this.drawer.resize(this.width, this.height);
   }
 
   public draw() {
