@@ -1,4 +1,4 @@
-import { Diagram } from '..';
+import { Diagram } from '../parser/diagram';
 import { RaphaelDrawer } from './drawer/RaphaelDrawer';
 
 export interface IDiagramPainterDrawSvgOptions {

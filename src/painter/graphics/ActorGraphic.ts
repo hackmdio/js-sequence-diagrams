@@ -9,15 +9,15 @@ export const ACTOR_PADDING = 10;
 export class ActorGraphic implements IDrawableGraphic {
 
   public box: DrawingBox = new DrawingBox();
-  public message: string;
+  public message!: string;
 
   public distance: number[] = [];
   public paddingRight: number = 0;
 
   public actor: Actor;
-  public index: number;
+  public index!: number;
 
-  public signalHeight: number;
+  public signalHeight: number = 0;
 
   constructor(actor: Actor) {
     this.actor = actor;

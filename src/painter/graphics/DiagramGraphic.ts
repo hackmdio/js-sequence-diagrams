@@ -1,6 +1,6 @@
-import { Diagram } from '../..';
+import { Diagram } from '../../parser/diagram';
 import { Placement } from '../../parser/enum';
-import { Actor, Note } from '../../parser/model';
+import { Actor, Note, Signal } from '../../parser/model';
 import { assert } from '../../utils';
 import { BaseDrawer, DIAGRAM_MARGIN, SELF_SIGNAL_WIDTH } from '../drawer/BaseDrawer';
 import { ACTOR_MARGIN, ACTOR_PADDING, ActorGraphic } from './ActorGraphic';
@@ -26,7 +26,7 @@ export class DiagramGraphic {
   private layoutOffsetY = 0;
 
   // drawable object
-  private title: TitleGraphic;
+  private title!: TitleGraphic;
   private actors: Map<number, ActorGraphic> = new Map<number, ActorGraphic>();
   private signalGraphics: BaseSignalGraphic[] = [];
 
@@ -116,13 +116,14 @@ export class DiagramGraphic {
       if (signal.type === 'Signal') {
         bs = this.setupSignalType(signal);
       } else if (signal.type === 'Note') {
-        bs = this.setupNoteType(signal);
+        bs = this.setupNoteType(signal as unknown as Note);
       }
+      // @ts-ignore
       this.signalTotalHeight += bs.box.height;
     });
   }
 
-  private setupSignalType(signal): BaseSignalGraphic {
+  private setupSignalType(signal: Signal): BaseSignalGraphic {
     const bb = this.estimateText(signal.message);
     const signalGraph = new SignalGraph(signal);
     signalGraph.type = 'Signal';
@@ -136,21 +137,20 @@ export class DiagramGraphic {
 
     if (signal.isSelf()) {
       // TODO: Self signals need a min height
-      signalGraph.actorAGraphic = this.actors.get(signal.actorA.index);
+      signalGraph.actorAGraphic = this.actors.get(signal.actorA.index) as ActorGraphic;
       signalGraph.box.width += SELF_SIGNAL_WIDTH;
     } else {
       const actorA = Math.min(signal.actorA.index, signal.actorB.index);
       const actorB = Math.max(signal.actorA.index, signal.actorB.index);
-      signalGraph.actorAGraphic = this.actors.get(actorA);
-      signalGraph.actorBGraphic = this.actors.get(actorB);
+      signalGraph.actorAGraphic = this.actors.get(actorA) as ActorGraphic;
+      signalGraph.actorBGraphic = this.actors.get(actorB) as ActorGraphic;
     }
     this.signalGraphics.push(signalGraph);
     return signalGraph;
   }
 
-  private setupNoteType(signal): BaseSignalGraphic {
-    const bb = this.estimateText(signal.message);
-    const note = signal as any as Note;
+  private setupNoteType(note: Note): BaseSignalGraphic {
+    const bb = this.estimateText(note.message);
     const noteGraphic = new NoteGraphic(note);
     noteGraphic.type = 'Note';
     noteGraphic.message = note.message;
@@ -166,10 +166,10 @@ export class DiagramGraphic {
       const actor2 = (note.actor as Actor[])[1];
       const actorA = Math.min(actor1.index, actor2.index);
       const actorB = Math.max(actor1.index, actor2.index);
-      noteGraphic.actorAGraphic = this.actors.get(actorA);
-      noteGraphic.actorBGraphic = this.actors.get(actorB);
+      noteGraphic.actorAGraphic = this.actors.get(actorA) as ActorGraphic;
+      noteGraphic.actorBGraphic = this.actors.get(actorB) as ActorGraphic;
     } else {
-      noteGraphic.actorAGraphic = this.actors.get((note.actor as Actor).index);
+      noteGraphic.actorAGraphic = this.actors.get((note.actor as Actor).index)  as ActorGraphic;
     }
     this.signalGraphics.push(noteGraphic);
     return noteGraphic;
@@ -220,6 +220,7 @@ export class DiagramGraphic {
           }
           break;
       }
+      // @ts-ignore
       this.actorEnsureDistance(a, b, ng.box.width + extraWidth);
     });
   }
@@ -231,7 +232,7 @@ export class DiagramGraphic {
       ag.signalHeight = this.signalTotalHeight;
       // TODO: This only works if we loop in sequence, 0, 1, 2, etc
       ag.distance.forEach((distance, b) => {
-        const actorB = this.actors.get(b);
+        const actorB = this.actors.get(b) as ActorGraphic;
         const maxDistance = Math.max(distance, ag.box.width / 2, actorB.box.width / 2);
         actorB.box.x = Math.max(
           actorB.box.x,
@@ -265,14 +266,14 @@ export class DiagramGraphic {
     assert(a < b, 'a must be less than or equal to b');
     if (a < 0) {
       // Ensure b has left margin
-      const actorB = this.actors.get(b);
+      const actorB = this.actors.get(b) as ActorGraphic;
       actorB.box.x = Math.max(d - actorB.box.width / 2, actorB.box.x);
     } else if (b >= this.actors.size) {
       // Ensure a has right margin
-      const actorA = this.actors.get(a);
+      const actorA = this.actors.get(a)  as ActorGraphic;
       actorA.paddingRight = Math.max(d, actorA.paddingRight);
     } else {
-      const actorA = this.actors.get(a);
+      const actorA = this.actors.get(a)  as ActorGraphic;
       actorA.distance[b] = Math.max(d, actorA.distance[b] ? actorA.distance[b] : 0);
     }
   }

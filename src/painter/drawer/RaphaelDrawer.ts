@@ -7,7 +7,7 @@ import {
   IHashMap,
 } from './BaseDrawer';
 
-import { Diagram } from '../..';
+import { Diagram } from '../../parser/diagram';
 import { ArrowType, LineType } from '../../parser/enum';
 import { assert } from '../../utils';
 

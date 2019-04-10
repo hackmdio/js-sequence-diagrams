@@ -1,5 +1,6 @@
-import { Diagram, DiagramGraphic } from '../..';
+import { Diagram } from '../../parser/diagram';
 import { ArrowType, LineType } from '../../parser/enum';
+import { DiagramGraphic } from '../graphics/DiagramGraphic';
 import { DrawingBox } from '../graphics/GraphicBox';
 import { IBoundingBox } from '../graphics/interfaces';
 
@@ -65,18 +66,18 @@ export abstract class BaseDrawer {
     this.drawText(x, y, text, this.font, align);
   }
 
-  public abstract setupCanvas(container: HTMLElement);
+  public abstract setupCanvas(container: HTMLElement): void;
 
-  public abstract resize(width: number, height: number) ;
+  public abstract resize(width: number, height: number): void ;
 
-  public abstract textBBox(text: string, font: IHashMap): IBoundingBox;
+  public abstract textBBox(text: string, font?: IHashMap): IBoundingBox;
 
-  public abstract drawRect(x: number, y: number, w: number, h: number);
+  public abstract drawRect(x: number, y: number, w: number, h: number): void;
 
-  public abstract drawText(x: number, y: number, text: string, font: IHashMap, align: number);
+  public abstract drawText(x: number, y: number, text: string, font: IHashMap, align: number): void;
 
   public abstract drawLine(
     x1: number, y1: number,
     x2: number, y2: number,
-    lineType?: LineType, arrowHead?: ArrowType);
+    lineType?: LineType, arrowHead?: ArrowType): void;
 }

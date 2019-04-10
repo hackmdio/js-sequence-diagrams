@@ -7,7 +7,7 @@ export const TITLE_MARGIN = 0;
 
 export class TitleGraphic implements IDrawableGraphic {
   public box: DrawingBox = new DrawingBox();
-  public message: string;
+  public message!: string;
 
   public draw(drawer: BaseDrawer) {
     drawer.drawTextBox(
