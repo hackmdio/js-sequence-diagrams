@@ -41,13 +41,13 @@ export class SignalGraph extends BaseSignalGraphic {
     const y2 = y1 + this.box.height - 2 * SIGNAL_MARGIN - SIGNAL_PADDING;
 
     // Draw three lines, the last one with a arrow
-    drawer.drawLine(this.box.x, y1, this.box.x + SELF_SIGNAL_WIDTH, y1, this.signal.linetype);
+    drawer.drawLine(this.box.x, y1, this.box.x + SELF_SIGNAL_WIDTH, y1, this.signal.lineType);
     drawer.drawLine(
       this.box.x + SELF_SIGNAL_WIDTH, y1,
-      this.box.x + SELF_SIGNAL_WIDTH, y2, this.signal.linetype);
+      this.box.x + SELF_SIGNAL_WIDTH, y2, this.signal.lineType);
     drawer.drawLine(
       this.box.x + SELF_SIGNAL_WIDTH, y2,
-      this.box.x, y2, this.signal.linetype, this.signal.arrowtype);
+      this.box.x, y2, this.signal.lineType, this.signal.arrowType);
 
     // Draw text
     const x = this.box.x + SELF_SIGNAL_WIDTH + SIGNAL_PADDING;
@@ -72,7 +72,7 @@ export class SignalGraph extends BaseSignalGraphic {
     // Padding above, between message and line
     // Margin below the line, between line and next signal
     y = this.box.y + this.box.height - SIGNAL_PADDING;
-    drawer.drawLine(this.box.x, y, x2, y, this.signal.linetype, this.signal.arrowtype);
+    drawer.drawLine(this.box.x, y, x2, y, this.signal.lineType, this.signal.arrowType);
   }
 
 }

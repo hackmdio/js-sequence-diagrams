@@ -1,21 +1,24 @@
-import { ArrowType, LineType } from '../enum';
+import { ArrowType, LineType, Placement } from '../enum';
 import { Actor } from './Actor';
+import { ISequence, SequenceType } from './IActor';
 
-export class Signal {
-  public type: 'Signal' | 'Note' = 'Signal';
+export class Signal implements ISequence {
+  public type: SequenceType = 'Signal';
   public actorA: Actor;
   public actorB: Actor;
-  public linetype: LineType;
-  public arrowtype: ArrowType;
+  public lineType: LineType;
+  public arrowType: ArrowType;
   public message: string;
 
-  constructor(actorA: Actor, signaltype: number, actorB: Actor, message: string) {
+  public placement!: Placement;
+
+  constructor(actorA: Actor, signalType: number, actorB: Actor, message: string) {
     this.actorA = actorA;
     this.actorB = actorB;
     // tslint:disable-next-line:no-bitwise
-    this.linetype = signaltype & 3;
+    this.lineType = signalType & 3;
     // tslint:disable-next-line:no-bitwise
-    this.arrowtype = (signaltype >> 2) & 3;
+    this.arrowType = (signalType >> 2) & 3;
     this.message = message;
   }
 

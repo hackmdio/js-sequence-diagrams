@@ -1,4 +1,6 @@
-export class Actor {
+import { IActor } from './IActor';
+
+export class Actor implements IActor {
   public alias: string;
   public name: string;
   public index: number;

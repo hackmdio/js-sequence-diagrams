@@ -28,7 +28,6 @@ export class Diagram {
   }
 
   public static parse(input: string): Diagram {
-    // TODO jison v0.4.17 changed their API slightly, so parser is no longer defined:
     // Create the object to track state and deal with errors
     parser.parser.Diagram = Diagram;
     parser.parser.yy = new Diagram();
@@ -48,7 +47,7 @@ export class Diagram {
   public actors: Actor[] = [];
   public signals: Signal[] = [];
 
-  private parseError!: (message: string, hash:string) => void;
+  private parseError!: (message: string, hash: string) => void;
 
   /**
    * Return an existing actor with this alias, or creates a new one with alias and name.

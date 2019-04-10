@@ -1,8 +1,9 @@
+/* tslint:disable:variable-name */
 import { Diagram } from './diagram';
 
-export interface Parser {
-  Diagram: typeof Diagram;
-  yy: Diagram;
+export class Parser {
+  public Diagram: typeof Diagram;
+  public yy: Diagram;
 }
 
 export const parser: Parser;
