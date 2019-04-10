@@ -8,6 +8,8 @@ export { DiagramGraphic } from './painter/graphics/DiagramGraphic';
 
 export { RaphaelDrawer } from './painter/drawer/RaphaelDrawer';
 
+import './jquery-plugin';
+
 export function sequenceDiagram(selector: string) {
   const ele = $(selector);
   const diagram = Diagram.parse(ele.text());

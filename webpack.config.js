@@ -1,43 +1,28 @@
 "use strict";
 
-const TerserPlugin = require('terser-webpack-plugin');
 const path = require("path");
 
 module.exports = {
-    entry: {
-        'index': './src/jquery-plugin.ts',
-        'index.min': './src/jquery-plugin.ts'
-    },
-    mode: 'development',
-    resolve: {
-        extensions: ['.ts', '.js']
-    },
-    module: {
-        rules: [
-            {
-                test: /\.ts/,
-                loader: 'babel-loader'
-            },
-            {
-                test: /\.js/,
-                loader: 'babel-loader'
-            }
-        ]
-    },
-    optimization: {
-        minimizer: [new TerserPlugin({
-            test: /\.min\.js$/
-        })],
-    },
-    externals: {
-        jquery: 'jQuery',
-        raphael: 'Raphael'
-    },
-    node: {
-        fs: 'empty'
-    },
-    output: {
-        filename: '[name].js',
-        path: path.resolve(__dirname, 'dist'),
-    }
+  entry: "./src/index.ts",
+  externals: {
+    jquery: "jQuery",
+    raphael: "Raphael",
+  },
+  mode: "production",
+  module: {
+    rules: [
+      {loader: "babel-loader", test: /\.ts/},
+      {loader: "babel-loader", test: /\.js/},
+    ],
+  },
+  node: {
+    fs: "empty",
+  },
+  output: {
+    filename: "[name].js",
+    path: path.resolve(__dirname, "build"),
+  },
+  resolve: {
+    extensions: [".ts", ".js"],
+  },
 };

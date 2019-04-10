@@ -20,7 +20,6 @@
   ],
   "license": "BSD-2-Clause",
   "devDependencies": {
-    "@babel/cli": "^7.4.3",
     "@babel/core": "^7.4.3",
     "@babel/plugin-proposal-class-properties": "^7.4.0",
     "@babel/polyfill": "^7.4.3",
@@ -33,7 +32,6 @@
     "jison": "^0.4.18",
     "jquery": "^3.3.1",
     "raphael": "^2.2.8",
-    "terser-webpack-plugin": "^1.2.3",
     "ts-loader": "^5.3.3",
     "tslint": "^5.15.0",
     "tslint-config-airbnb": "^5.11.1",
@@ -47,8 +45,10 @@
   },
   "scripts": {
     "lint": "tslint --project ./ src/**/*.ts",
-    "build-grammar": "jison src/parser/grammar.jison -o src/parser/grammar.js",
-    "build": "npm run-script build-grammar && webpack -c webpack.config.js --prorgess",
+    "build": "npm run-script build:src && npm run-script build:prod",
+    "build:grammar": "jison src/parser/grammar.jison -o src/parser/grammar.js",
+    "build:src": "npm run-script build:grammar && tsc",
+    "build:prod": "npm run-script build:grammar && webpack -c webpack.config.js --progress",
     "prepack": "npm run-script build"
   }
 }

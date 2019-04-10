@@ -1,5 +1,3 @@
-import '@babel/polyfill';
-
 export class AssertException extends Error {
   public message: string;
 
