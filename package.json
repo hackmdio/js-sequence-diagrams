@@ -47,7 +47,8 @@
     "lint": "tslint --project ./ src/**/*.ts",
     "build": "npm run-script build:src && npm run-script build:prod",
     "build:grammar": "jison src/parser/grammar.jison -o src/parser/grammar.js",
-    "build:src": "npm run-script build:grammar && tsc",
+    "build:src": "npm run-script build:grammar && tsc && npm run-script build:types",
+    "build:types": "tsc -d  --emitDeclarationOnly --allowJs false",
     "build:prod": "npm run-script build:grammar && webpack -c webpack.config.js --progress",
     "prepack": "npm run-script build"
   }

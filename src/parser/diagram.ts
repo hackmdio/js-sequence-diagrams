@@ -6,7 +6,7 @@
  */
 
 import { ArrowType, LineType, Placement } from './enum';
-import * as parser from './grammar.js';
+import * as parser from './grammar';
 import { Actor, Note, Signal } from './model';
 import { ParseError } from './ParseError';
 
@@ -30,9 +30,9 @@ export class Diagram {
   public static parse(input: string): Diagram {
     // TODO jison v0.4.17 changed their API slightly, so parser is no longer defined:
     // Create the object to track state and deal with errors
-    (parser.parser as any).Diagram = Diagram;
-    (parser.parser as any).yy = new Diagram();
-    (parser.parser as any).yy.parseError = (message: string, hash: string) => {
+    parser.parser.Diagram = Diagram;
+    parser.parser.yy = new Diagram();
+    parser.parser.yy.parseError = (message: string, hash: string) => {
       throw new ParseError(message, hash);
     };
 
@@ -48,7 +48,7 @@ export class Diagram {
   public actors: Actor[] = [];
   public signals: Signal[] = [];
 
-  private parseError = undefined;
+  private parseError!: (message: string, hash:string) => void;
 
   /**
    * Return an existing actor with this alias, or creates a new one with alias and name.

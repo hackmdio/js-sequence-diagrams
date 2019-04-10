@@ -6,23 +6,23 @@ module.exports = {
   entry: "./src/index.ts",
   externals: {
     jquery: "jQuery",
-    raphael: "Raphael",
+    raphael: "Raphael"
   },
   mode: "production",
   module: {
     rules: [
       {loader: "babel-loader", test: /\.ts/},
-      {loader: "babel-loader", test: /\.js/},
-    ],
+      {loader: "babel-loader", test: /\.js/}
+    ]
   },
   node: {
-    fs: "empty",
+    fs: "empty"
   },
   output: {
     filename: "[name].js",
-    path: path.resolve(__dirname, "build"),
+    path: path.resolve(__dirname, "build")
   },
   resolve: {
-    extensions: [".ts", ".js"],
-  },
+    extensions: [".js", ".ts"]
+  }
 };
