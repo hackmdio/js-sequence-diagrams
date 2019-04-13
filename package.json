@@ -1,6 +1,6 @@
 {
   "name": "@hackmd/js-sequence-diagrams",
-  "version": "0.0.1-alpha.2",
+  "version": "0.0.1-alpha.3",
   "description": "Draws simple SVG sequence diagrams from textual representation of the diagram",
   "repository": {
     "type": "git",

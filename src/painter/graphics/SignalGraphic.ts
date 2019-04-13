@@ -18,6 +18,8 @@ export const NOTE_OVERLAP = 15;
 export class SignalGraph extends BaseSignalGraphic {
   public signal: Signal;
 
+  public reverseSignal: boolean = false;
+
   constructor(signal: Signal) {
     super();
     this.signal = signal;
@@ -72,7 +74,11 @@ export class SignalGraph extends BaseSignalGraphic {
     // Padding above, between message and line
     // Margin below the line, between line and next signal
     y = this.box.y + this.box.height - SIGNAL_PADDING;
-    drawer.drawLine(this.box.x, y, x2, y, this.signal.lineType, this.signal.arrowType);
+    if (this.reverseSignal) {
+      drawer.drawLine(x2, y, this.box.x, y, this.signal.lineType, this.signal.arrowType);
+    } else {
+      drawer.drawLine(this.box.x, y, x2, y, this.signal.lineType, this.signal.arrowType);
+    }
   }
 
 }

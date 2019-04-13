@@ -145,6 +145,9 @@ export class DiagramGraphic {
       const actorB = Math.max(signal.actorA.index, signal.actorB.index);
       signalGraph.actorAGraphic = this.actors.get(actorA) as ActorGraphic;
       signalGraph.actorBGraphic = this.actors.get(actorB) as ActorGraphic;
+      if (actorA !== signal.actorA.index) {
+        signalGraph.reverseSignal = true;
+      }
     }
     this.signalGraphics.push(signalGraph);
     return signalGraph;
